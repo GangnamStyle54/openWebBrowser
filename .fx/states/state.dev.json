@@ -1,0 +1,33 @@
+{
+    "solution": {
+        "provisionSucceeded": true,
+        "teamsAppTenantId": "db5fc155-30d2-4628-abb0-0de249365a8e",
+        "subscriptionId": "24c87167-4610-4472-aef5-bdfb242d1517",
+        "subscriptionName": "Azure subscription 1",
+        "tenantId": "d87047e2-e879-4cc1-ac0e-72af629f6550",
+        "needCreateResourceGroup": false,
+        "resourceGroupName": "cool_app-stage-rg",
+        "location": "westeurope",
+        "resourceNameSuffix": "0e7b83"
+    },
+    "fx-resource-appstudio": {
+        "tenantId": "db5fc155-30d2-4628-abb0-0de249365a8e",
+        "teamsAppId": "233dbac0-d359-4d3c-a251-f97f31121537"
+    },
+    "fx-resource-bot": {
+        "botId": "0f5becf4-ac75-41cf-99c4-4ec4e0d2284d",
+        "botPassword": "{{fx-resource-bot.botPassword}}",
+        "objectId": "31213023-6dae-4dcc-8201-3fb30ebffaf5",
+        "skuName": "B1",
+        "siteName": "openwebbroc5d925bot",
+        "domain": "openwebbroc5d925bot.azurewebsites.net",
+        "appServicePlanName": "openwebbroc5d925bot",
+        "resourceId": "/subscriptions/24c87167-4610-4472-aef5-bdfb242d1517/resourceGroups/cool_app-stage-rg/providers/Microsoft.Web/sites/openwebbroc5d925bot",
+        "siteEndpoint": "https://openwebbroc5d925bot.azurewebsites.net"
+    },
+    "fx-resource-identity": {
+        "identityName": "openwebbroc5d925",
+        "identityResourceId": "/subscriptions/24c87167-4610-4472-aef5-bdfb242d1517/resourceGroups/cool_app-stage-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/openwebbroc5d925",
+        "identityClientId": "6a0bf503-b0dd-427c-8f07-26575195b4eb"
+    }
+}
