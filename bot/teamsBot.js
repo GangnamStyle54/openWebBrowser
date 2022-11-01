@@ -211,7 +211,7 @@ async function sendUpdateCard(context, cardActions) {
     await context.updateActivity(message);
     console.log("não está a dar erro");
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
   }
 }
 
