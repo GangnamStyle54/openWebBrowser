@@ -85,10 +85,10 @@ class TeamsBot extends TeamsActivityHandler {
   // Action.
   async handleTeamsMessagingExtensionSubmitAction(context, action) {
     switch (action.commandId) {
-      case "createCard":
+      case "postComment":
         return createCardCommand(context, action);
       case "openWebUrl":
-        return await openWebUrlCommand();
+        return await openWebUrlCommand(context);
       default:
         throw new Error("NotImplemented");
     }
@@ -172,7 +172,9 @@ function createCardCommand(context, action) {
   };
 }
 
-async function openWebUrlCommand() {
+async function openWebUrlCommand(context) {
+  console.log(context);
+
   //Open web url
   await open('https://google.pt?query=test');
 

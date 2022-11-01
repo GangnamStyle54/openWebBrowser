@@ -40,20 +40,19 @@
                     "fetchTask": false
                 },
                 {
-                    "id": "searchQuery",
+                    "id": "postComment",
                     "context": [
-                        "compose",
-                        "commandBox"
+                        "message"
                     ],
                     "description": "Test command to run query",
-                    "title": "Search",
-                    "type": "query",
+                    "title": "Post a comment",
+                    "type": "action",
                     "parameters": [
                         {
-                            "name": "searchQuery",
-                            "title": "Search Query",
-                            "description": "Your search query",
-                            "inputType": "text"
+                            "name": "comment",
+                            "title": "Comment",
+                            "description": "Write a comment",
+                            "inputType": "textarea"
                         }
                     ]
                 }
