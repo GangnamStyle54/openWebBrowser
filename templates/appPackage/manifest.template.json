@@ -23,7 +23,37 @@
         "full": "{{config.manifest.description.full}}"
     },
     "accentColor": "#FFFFFF",
-    "bots": [],
+    "bots": [
+        {
+            "botId": "{{state.fx-resource-bot.botId}}",
+            "scopes": [
+                "personal",
+                "team",
+                "groupchat"
+            ],
+            "supportsFiles": false,
+            "isNotificationOnly": false,
+            "commandLists": [
+                {
+                    "scopes": [
+                        "personal",
+                        "team",
+                        "groupchat"
+                    ],
+                    "commands": [
+                        {
+                            "title": "welcome",
+                            "description": "Resend welcome card of this Bot"
+                        },
+                        {
+                            "title": "learn",
+                            "description": "Learn about Adaptive Card and Bot Command"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
     "composeExtensions": [
         {
             "botId": "{{state.fx-resource-bot.botId}}",
@@ -44,8 +74,8 @@
                     "context": [
                         "message"
                     ],
-                    "description": "Test command to run query",
-                    "title": "Post a comment",
+                    "description": "Post a comment",
+                    "title": "Comment",
                     "type": "action",
                     "parameters": [
                         {

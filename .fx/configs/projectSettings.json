@@ -9,7 +9,8 @@
             "provision": false,
             "deploy": true,
             "capabilities": [
-                "message-extension"
+                "message-extension",
+                "bot"
             ],
             "build": true,
             "folder": "bot"
@@ -38,6 +39,7 @@
         "hostType": "Azure",
         "azureResources": [],
         "capabilities": [
+            "Bot",
             "MessagingExtension"
         ],
         "activeResourcePlugins": [
@@ -53,7 +55,8 @@
         "fx-resource-bot": {
             "host-type": "app-service",
             "capabilities": [
-                "message-extension"
+                "message-extension",
+                "bot"
             ]
         }
     }

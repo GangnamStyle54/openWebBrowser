@@ -1,6 +1,6 @@
 {
     "solution": {
-        "provisionSucceeded": true,
+        "provisionSucceeded": false,
         "teamsAppTenantId": "db5fc155-30d2-4628-abb0-0de249365a8e",
         "subscriptionId": "24c87167-4610-4472-aef5-bdfb242d1517",
         "subscriptionName": "Azure subscription 1",

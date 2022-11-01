@@ -1,7 +1,7 @@
 const axios = require("axios");
 const querystring = require("querystring");
 const open = require("open");
-const { TeamsActivityHandler, CardFactory, TurnContext } = require("botbuilder");
+const { TeamsActivityHandler, CardFactory, TurnContext, ActionTypes, MessageFactory } = require("botbuilder");
 const rawWelcomeCard = require("./adaptiveCards/welcome.json");
 const rawLearnCard = require("./adaptiveCards/learn.json");
 const cardTools = require("@microsoft/adaptivecards-tools");
@@ -86,9 +86,11 @@ class TeamsBot extends TeamsActivityHandler {
   async handleTeamsMessagingExtensionSubmitAction(context, action) {
     switch (action.commandId) {
       case "postComment":
-        return createCardCommand(context, action);
+        cardActivityAsync(context, action);
+        break;
       case "openWebUrl":
-        return await openWebUrlCommand(context);
+        await openWebUrlCommand(context);
+        break;
       default:
         throw new Error("NotImplemented");
     }
@@ -152,33 +154,65 @@ class TeamsBot extends TeamsActivityHandler {
   }
 }
 
-function createCardCommand(context, action) {
-  // The user has chosen to create a card by choosing the 'Create Card' context menu command.
-  const data = action.data;
-  const heroCard = CardFactory.heroCard(data.title, data.text);
-  heroCard.content.subtitle = data.subTitle;
-  const attachment = {
-    contentType: heroCard.contentType,
-    content: heroCard.content,
-    preview: heroCard,
-  };
-
-  return {
-    composeExtension: {
-      type: "result",
-      attachmentLayout: "list",
-      attachments: [attachment],
+async function cardActivityAsync(context, action) {
+  const cardActions = [
+    {
+        type: ActionTypes.MessageBack,
+        title: 'Message all members',
+        value: null,
+        text: 'MessageAllMembers'
     },
-  };
+    {
+        type: ActionTypes.MessageBack,
+        title: 'Who am I?',
+        value: null,
+        text: 'whoami'
+    },
+    {
+        type: ActionTypes.MessageBack,
+        title: 'Delete card',
+        value: null,
+        text: 'Delete'
+    }
+];
+
+    await sendUpdateCard(context, cardActions);
 }
 
 async function openWebUrlCommand(context) {
-  console.log(context);
-
   //Open web url
   await open('https://google.pt?query=test');
+}
 
-  return null;
+async function sendUpdateCard(context, cardActions) {
+  const data = context.activity.value;
+  const adaptiveCard = data.messagePayload.attachments[0];
+
+  const adaptiveCardContent = JSON.parse(adaptiveCard.content);
+
+  data.count += 1;
+  cardActions.push({
+      type: ActionTypes.MessageBack,
+      title: 'Update Card',
+      value: data,
+      text: 'UpdateCardAction'
+  });
+  const card = CardFactory.heroCard(
+      'Updated card',
+      `Update count: ${ data.count }`,
+      null,
+      cardActions
+  );
+  card.id = adaptiveCard.id;
+  const message = MessageFactory.attachment(card);
+  message.id = adaptiveCard.id;
+
+  try {
+    await context.updateActivity(message);
+    console.log("não está a dar erro");
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 module.exports.TeamsBot = TeamsBot;
